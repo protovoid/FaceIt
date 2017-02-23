@@ -34,6 +34,9 @@
                             <constraint firstItem="OrM-E4-QNo" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="jIt-br-KsN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="faceView" destination="OrM-E4-QNo" id="MZD-5M-xq6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
