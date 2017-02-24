@@ -23,6 +23,16 @@ class FaceView: UIView {
   var color: UIColor = UIColor.green { didSet { setNeedsDisplay() } } // redraw
   @IBInspectable
   var lineWidth: CGFloat = 5.0 { didSet { setNeedsDisplay() } } // redraw
+  
+  func changeScale(_ recognizer: UIPinchGestureRecognizer) {
+    switch recognizer.state {
+    case .changed,.ended:
+      scale *= recognizer.scale
+      recognizer.scale = 1.0
+    default:
+      break
+    }
+  }
 
   
   fileprivate var skullRadius: CGFloat {
