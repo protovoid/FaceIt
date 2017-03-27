@@ -23,6 +23,8 @@ class FaceViewController: UIViewController {
   
   @IBOutlet weak var faceView: FaceView! {
     didSet {
+      /*
+       // OLD way (still works with Swift 3.0)
       faceView.addGestureRecognizer(UIPinchGestureRecognizer(
         target: faceView, action: #selector(FaceView.changeScale(_:))
       ))
@@ -36,21 +38,38 @@ class FaceViewController: UIViewController {
       )
       sadderSwipeGestureRecognizer.direction = .down
       faceView.addGestureRecognizer(sadderSwipeGestureRecognizer)
+       updateUI()
+      */
+      
+      let handler = #selector(FaceView.changeScale(byReactingTo:))
+      let pinchRecognizer = UIPinchGestureRecognizer(target: faceView, action: handler)
+      faceView.addGestureRecognizer(pinchRecognizer)
+      let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleEyes(byReactingTo:)))
+      tapRecognizer.numberOfTapsRequired = 1
+      faceView.addGestureRecognizer(tapRecognizer)
+      
+      let happierSwipeGestureRecognizer = UISwipeGestureRecognizer(
+        target: self, action: #selector(FaceViewController.increaseHappiness))
+      happierSwipeGestureRecognizer.direction = .up
+      faceView.addGestureRecognizer(happierSwipeGestureRecognizer)
+      
+      let sadderSwipeGestureRecognizer = UISwipeGestureRecognizer(
+        target: self, action: #selector(FaceViewController.decreaseHappiness))
+      sadderSwipeGestureRecognizer.direction = .down
+      faceView.addGestureRecognizer(sadderSwipeGestureRecognizer)
       
       updateUI()
     }
   }
   
   fileprivate func updateUI() {
-    if faceView != nil {
       switch expression.eyes {
-      case .Open: faceView.eyesOpen = true
-      case .Closed: faceView.eyesOpen = false
-      case .Squinting: faceView.eyesOpen = false
+      case .Open: faceView?.eyesOpen = true
+      case .Closed: faceView?.eyesOpen = false
+      case .Squinting: faceView?.eyesOpen = false
       }
       faceView.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0 // default to zero
       faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
-    }
   }
   
   fileprivate var mouthCurvatures = [FacialExpression.Mouth.Frown:-1.0,.Grin:0.5,.Smile:1.0,.Smirk:-0.5,.Neutral:0.0]
@@ -66,8 +85,8 @@ class FaceViewController: UIViewController {
     expression.mouth = expression.mouth.sadderMouth()
   }
   
-  @IBAction func toggleEyes(_ recognizer: UITapGestureRecognizer) {
-    if recognizer.state == .ended {
+  @IBAction func toggleEyes(byReactingTo tapRecognizer: UITapGestureRecognizer) {
+    if tapRecognizer.state == .ended {
       switch expression.eyes {
       case .Open: expression.eyes = .Closed
       case .Closed: expression.eyes = .Open

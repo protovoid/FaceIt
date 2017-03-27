@@ -24,11 +24,11 @@ class FaceView: UIView {
   @IBInspectable
   var lineWidth: CGFloat = 5.0 { didSet { setNeedsDisplay() } } // redraw
   
-  func changeScale(_ recognizer: UIPinchGestureRecognizer) {
-    switch recognizer.state {
+  func changeScale(byReactingTo pinchRecognizer: UIPinchGestureRecognizer) {
+    switch pinchRecognizer.state {
     case .changed,.ended:
-      scale *= recognizer.scale
-      recognizer.scale = 1.0
+      scale *= pinchRecognizer.scale
+      pinchRecognizer.scale = 1.0
     default:
       break
     }
