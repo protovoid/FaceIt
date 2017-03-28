@@ -68,8 +68,8 @@ class FaceViewController: UIViewController {
       case .Closed: faceView?.eyesOpen = false
       case .Squinting: faceView?.eyesOpen = false
       }
-      faceView.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0 // default to zero
-      faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
+      faceView?.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0 // default to zero
+      faceView?.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
   }
   
   fileprivate var mouthCurvatures = [FacialExpression.Mouth.Frown:-1.0,.Grin:0.5,.Smile:1.0,.Smirk:-0.5,.Neutral:0.0]
