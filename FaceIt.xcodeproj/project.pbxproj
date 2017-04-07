@@ -113,6 +113,7 @@
 				TargetAttributes = {
 					636981C21E5E118800CEFF01 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = USX5JPN9EV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -280,6 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = USX5JPN9EV;
 				INFOPLIST_FILE = FaceIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voidarray.FaceIt;
@@ -292,6 +294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = USX5JPN9EV;
 				INFOPLIST_FILE = FaceIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.voidarray.FaceIt;
@@ -319,6 +322,7 @@
 				636981D71E5E118800CEFF01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
